@@ -9,7 +9,7 @@
     }
     console.log(str);
   }
-  console.log(" DSA IN TYPESCRIPT");
+  console.log(" TYPESCRIPT");
 })();
 
 const p1: number = performance.now();
@@ -58,5 +58,20 @@ function logger(value: string, message?: string): void {
 }
 
 logger("asdasd");
+
+function displayMsg<T, S>(value: T, email?: S): void {
+  console.log(value, email);
+}
+
+type strber = number | string;
+
+displayMsg<strber, string>(12313, "email is gmail");
+displayMsg<strber, {}>("asdadsdsad", { greet: "Hola" });
+
+function fnRet<T>(fn: () => T): T {
+  return fn();
+}
+
+fnRet(() => "sdadhjasdh");
 
 console.log(charCounter(str));
