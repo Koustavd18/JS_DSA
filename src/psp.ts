@@ -105,6 +105,7 @@ function anagram(str1: string, str2: string): boolean {
 // console.log(performance.now() - p12);
 
 function sumZero(arr: number[]): number[] | undefined {
+  // the array is considered sorted
   let i = 0;
   let j = arr.length - 1;
 
@@ -165,7 +166,88 @@ function maxSubArray(arr: number[], num: number): number | boolean | undefined {
   return maxSum;
 }
 
-console.log(
-  maxSubArray([1, 2, 3, 1, 2, 3, 2, 4, 1, 2, 3, 4, 3, 2, 4, 3, 4, 5], 4)
-);
-console.log(maxSubArray([2, 6, 9, 2, 1, 8, 5, 6, 3], 3));
+// console.log(
+//   maxSubArray([1, 2, 3, 1, 2, 3, 2, 4, 1, 2, 3, 4, 3, 2, 4, 3, 4, 5], 4)
+// );
+// console.log(maxSubArray([2, 6, 9, 2, 1, 8, 5, 6, 3], 3));
+
+function sameFrequency(num1: number, num2: number): boolean {
+  const n1 = num1.toString();
+  const n2 = num2.toString();
+  if (n1.length != n2.length) {
+    return false;
+  }
+
+  const obj1: { [key: string]: number } = {};
+  const obj2: { [key: string]: number } = {};
+  for (let i = 0; i < n1.length; i++) {
+    obj1[n1[i]] = ++obj1[n1[i]] || 1;
+  }
+
+  for (let i = 0; i < n2.length; i++) {
+    obj2[n2[i]] = ++obj2[n2[i]] || 1;
+  }
+
+  for (let key in obj1) {
+    if (key in obj2 === null || undefined) return false;
+
+    if (obj1[key] !== obj2[key]) return false;
+  }
+
+  return true;
+}
+
+// console.log(sameFrequency(182, 281)); // true
+// console.log(sameFrequency(34, 14)); // false
+// console.log(sameFrequency(3589578, 5879385)); // true
+// console.log(sameFrequency(22, 222)); // false
+
+function areThereDuplicates<T>(...args: T[]): boolean {
+  const obj: any = {};
+
+  console.log(new Set(args));
+
+  for (let i of args) {
+    obj[i] = ++obj[i] || 1;
+  }
+  for (let i in obj) {
+    if (obj[i] > 1) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// function areThereDuplicates() {
+//   return new Set(arguments).size !== arguments.length;
+// }
+
+// console.log(areThereDuplicates(1, 2, 3)); // false
+// console.log(areThereDuplicates(1, 2, 2)); // true
+// console.log(areThereDuplicates("a", "b", "c", "a")); // true
+
+function averagePair(arr: number[], avg: number) {
+  // The array is considered sorted
+  if (arr.length < 1) {
+    return false;
+  }
+  let i = 0;
+  let j = arr.length - 1;
+  while (i < j) {
+    let num = (arr[i] + arr[j]) / 2;
+    if (num === avg) {
+      return true;
+    }
+    if (num < avg) {
+      i++;
+    } else {
+      j--;
+    }
+  }
+  return false;
+}
+
+console.log(averagePair([1, 2, 3], 2.5)); // true
+console.log(averagePair([1, 3, 3, 5, 6, 7, 10, 12, 19], 8)); // true
+console.log(averagePair([-1, 0, 3, 4, 5, 6], 4.1)); // false
+console.log(averagePair([], 4)); // false
