@@ -201,10 +201,15 @@ function flatten(oldArr: any): number[] {
 // console.log(flatten([[1], [2], [3]])); // [1,2,3]
 // console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])); // [1,2,3]
 
-//TODO SOlve this
-// function capitalizeFirst(arr: string[]) {
-//   const newArr: string[] = [];
-//   if (arr.length === 0) return newArr;
-// }
+function capitalizeFirst(arr: string[]) {
+  let newArr: string[] = [];
+  arr.forEach((element) => {
+    const first = element.split("")[0].toUpperCase();
+    const rest = element.slice(1);
+    const word = first + rest;
+    newArr.push(word);
+  });
+  return newArr;
+}
 
-// console.log(capitalizeFirst(["car", "taco", "banana"])); // ['Car','Taco','Banana']
+console.log(capitalizeFirst(["car", "taco", "banana"])); // ['Car','Taco','Banana']
