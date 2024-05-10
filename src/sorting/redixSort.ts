@@ -20,7 +20,7 @@ function mostDigits(nums: number[]): number {
 function redixSort(nums: number[]) {
   const maxDigits = mostDigits(nums);
   for (let k = 0; k < maxDigits; k++) {
-    let digitsBucket = Array.from({ length: 10 }, () => []);
+    let digitsBucket: any = Array.from({ length: 10 }, () => []);
     for (let i = 0; i < nums.length; i++) {
       let digit = getDigit(nums[i], k);
       digitsBucket[digit].push(nums[i]);
