@@ -39,7 +39,7 @@ class SLL {
     }
     pre.next = null;
     this.tail = pre;
-    this.length -= 1;
+
     if (this.length === 0) {
       this.head = null;
       this.tail = null;
